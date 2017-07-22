@@ -3,7 +3,7 @@ const request = require('request');
 
 // Get the config const
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
-const VALIDATION_TOKEN = config.get('validationToken');
+const VALIDATION_TOKEN = config.get('verifyToken');
 
 function receivedMessage(event) {
     var senderID = event.sender.id;
