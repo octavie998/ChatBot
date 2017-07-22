@@ -1,5 +1,6 @@
-const config  = require('config');
-const request = require('request');
+const config      = require('config');
+const request     = require('request');
+const userService = require('./userService');
 
 // Get the config const
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
@@ -18,16 +19,20 @@ function receivedMessage(event) {
     var messageText = message.text;
     var messageAttachments = message.attachments;
 
-    if (messageText) {
-        switch (messageText) {
-            case 'Coucou':
-                sendTextMessage(senderID, 'Coucou toi');
-                break;
-            default:
-                sendTextMessage(senderID, messageText);
+    if (userService.isUserKnown(senderID)) {
+        if (messageText) {
+            switch (messageText) {
+                case "Coucou":
+                    sendTextMessage(senderID, "Coucou toi");
+                    break;
+                default:
+                    sendTextMessage(senderID, messageText + " toi");
+            }
+        } else if (messageAttachments) {
+            sendTextMessage(senderID, "Message with attachment received");
         }
-    } else if (messageAttachments) {
-        sendTextMessage(senderID, "Message with attachment received");
+    } else {
+        sendTextMessage(senderID, "Bienvenue");
     }
 }
 
