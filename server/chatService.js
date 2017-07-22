@@ -32,6 +32,11 @@ function receivedMessage(event) {
             sendTextMessage(senderID, "Message with attachment received");
         }
     } else {
+        userService.addUser(senderID, {
+            id: senderID,
+            createdAt: timeOfMessage,
+            status: 'chat'
+        });
         sendTextMessage(senderID, "Bienvenue");
     }
 }
