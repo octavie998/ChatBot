@@ -20,6 +20,9 @@ function receivedMessage(event) {
 
     if (messageText) {
         switch (messageText) {
+            case 'Coucou':
+                sendTextMessage(senderID, 'Coucou toi');
+                break;
             default:
                 sendTextMessage(senderID, messageText);
         }
