@@ -2,7 +2,6 @@ const config  = require('config');
 const request = require('request');
 
 // Get the config const
-
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
 const VALIDATION_TOKEN = config.get('validationToken');
 
