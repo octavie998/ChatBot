@@ -52,10 +52,9 @@ function receivedMessage(event) {
         // sendTextMessage(1068122326553209, "Le test marche ou pas?");
         // Octavie
         // sendTextMessage(10152469819394666, "Le test marche !");
-        sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir !");
-        sendTextMessage(senderID, "Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
-        if (messageText) {
-            switch (messageText) {
+        sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
+        if (messageText2) {
+            switch (messageText2) {
                 case "oui":
                     sendTextMessage(senderID, "C'est 2 grains de sable qui arrivent à la plage: Putain, c'est blindé aujourd'hui...");
                     sendTextMessage(senderID, "Alors ?? Pas mal je trouve ! :)");
