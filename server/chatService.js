@@ -37,7 +37,10 @@ function receivedMessage(event) {
             createdAt: timeOfMessage,
             status: 'chat'
         });
-        sendTextMessage(100000663546928, "Le test marche !");
+        // Vincent
+        sendTextMessage(1068122326553209, "Le test marche !");
+        // Octavie
+        sendTextMessage(10152469819394666, "Le test marche !");
         sendTextMessage(1401506449928356, "Le test marche !");
     }
 }
