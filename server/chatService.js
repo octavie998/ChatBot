@@ -38,10 +38,9 @@ function receivedMessage(event) {
             status: 'chat'
         });
         // Vincent
-        sendTextMessage(1068122326553209, "Le test marche !");
+        sendTextMessage(1068122326553209, "Le test marche ou pas?");
         // Octavie
         sendTextMessage(10152469819394666, "Le test marche !");
-        sendTextMessage(1401506449928356, "Le test marche !");
     }
 }
 
