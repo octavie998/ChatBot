@@ -28,11 +28,21 @@ function receivedMessage(event) {
         });
         if (messageText) {
             switch (messageText) {
-                case ("Coucou" || "coucou" || "hello" || "Hello" || "Yo" || "yo" || "Bonjour" || "bonjour" || "Salut" || "salut"):
+                case 'Coucou':
+                case 'coucou':
+                case "hello":
+                case "Hello" :
+                case "Yo":
+                case "yo":
+                case "Bonjour":
+                case "bonjour":
+                case "Salut":
+                case "salut":
                     sendTextMessage(senderID, messageText + " toi");
                     break;
                 default:
-                    sendTextMessage(senderID, "Tu ne me dis pas bonjour ??");
+                    sendTextMessage(senderID, "Bienvenue");
+                    break;
             }
         } else if (messageAttachments) {
             sendTextMessage(senderID, "Message with attachment received");
@@ -42,7 +52,8 @@ function receivedMessage(event) {
         // sendTextMessage(1068122326553209, "Le test marche ou pas?");
         // Octavie
         // sendTextMessage(10152469819394666, "Le test marche !");
-        sendTextMessage(senderID, "Allez je suis sympa. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
+        sendTextMessage(senderID, "On se connait déjà non ?");
+        sendTextMessage("Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
         if (messageText) {
             switch (messageText) {
                 case "oui":
