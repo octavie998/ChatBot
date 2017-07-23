@@ -20,7 +20,13 @@ function receivedMessage(event) {
     var messageText2 = message.text;
     var messageAttachments = message.attachments;
 
-    if (userService.isUserKnown(senderID)) {
+    if (userService.isUserKnown(senderID) == false) {
+        userService.addUser(senderID, {
+            id: senderID,
+            createdAt: timeOfMessage,
+            status: 'chat'
+        });
+    } else {
         if (messageText) {
             switch (messageText) {
                 case "Coucou" || "coucou" || "hello" || "Hello" || "Yo" || "yo" || "Bonjour" || "bonjour" || "Salut" || "salut":
@@ -32,17 +38,11 @@ function receivedMessage(event) {
         } else if (messageAttachments) {
             sendTextMessage(senderID, "Message with attachment received");
         }
-    } else {
-        userService.addUser(senderID, {
-            id: senderID,
-            createdAt: timeOfMessage,
-            status: 'chat'
-        });
         // Vincent
-        sendTextMessage(1068122326553209, "Le test marche ou pas?");
+        // sendTextMessage(1068122326553209, "Le test marche ou pas?");
         // Octavie
-        sendTextMessage(10152469819394666, "Le test marche !");
-        sendTextMessage(senderID, "Bon allez je suis sympa. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
+        // sendTextMessage(10152469819394666, "Le test marche !");
+        // sendTextMessage(senderID, "Bon allez je suis sympa. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
         //if (messageText2) {
         //   switch (messageText2) {
         //       case "oui":
