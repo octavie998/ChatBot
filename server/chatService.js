@@ -44,15 +44,17 @@ function receivedMessage(event) {
         // sendTextMessage(10152469819394666, "Le test marche !");
         sendTextMessage(senderID, "Allez je suis sympa. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
         if (messageText) {
-           switch (messageText) {
-               case "oui":
-                  sendTextMessage(senderID,"C'est 2 grains de sable qui arrivent à la plage: Putain, c'est blindé aujourd'hui...");
-                   break;
-               case "non":
-                   sendTextMessage(senderID,"Dommage pour toi mon coco");
-                   break;
-               default:
-                   sendTextMessage("Je n'ai pas compris la réponse. Pourtant c'était pas compliqué : oui ou non. Tu as une deuxième chance. Ca te tente une blague ?");
+            switch (messageText) {
+                case "oui":
+                    sendTextMessage(senderID, "C'est 2 grains de sable qui arrivent à la plage: Putain, c'est blindé aujourd'hui...");
+                    break;
+                case "non":
+                    sendTextMessage(senderID, "Dommage pour toi mon coco");
+                    break;
+                default:
+                    sendTextMessage("Je n'ai pas compris la réponse. Pourtant c'était pas compliqué : oui ou non. Tu as une deuxième chance. Ca te tente une blague ?");
+            }
+        }
     }
 }
 
