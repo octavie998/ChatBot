@@ -41,7 +41,7 @@ function receivedMessage(event) {
                     sendTextMessage(senderID, messageText + " toi");
                     break;
                 default:
-                    sendTextMessage(senderID, "Bienvenue");
+                    sendTextMessage(senderID, "Bienvenue. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
                     break;
             }
         } else if (messageAttachments) {
@@ -53,7 +53,8 @@ function receivedMessage(event) {
         // Octavie
         // sendTextMessage(10152469819394666, "Le test marche !");
         sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
-        if (messageText2) {
+    }
+    if (messageText2) {
             switch (messageText2) {
                 case "oui":
                     sendTextMessage(senderID, "C'est 2 grains de sable qui arrivent à la plage: Putain, c'est blindé aujourd'hui...");
@@ -66,7 +67,6 @@ function receivedMessage(event) {
                     sendTextMessage(senderID, "Je n'ai pas compris la réponse. Pourtant c'était pas compliqué : oui ou non. Tu as une deuxième chance. Ca te tente une blague ?");
             }
         }
-    }
 }
 
 
