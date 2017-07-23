@@ -37,7 +37,7 @@ function receivedMessage(event) {
             createdAt: timeOfMessage,
             status: 'chat'
         });
-        sendTextMessage(senderID, "Bienvenue");
+        sendTextMessage(senderID, senderID);
     }
 }
 
