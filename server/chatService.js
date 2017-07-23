@@ -37,7 +37,7 @@ function receivedMessage(event) {
             createdAt: timeOfMessage,
             status: 'chat'
         });
-        sendTextMessage(senderID, senderID);
+        sendTextMessage(10152469819394666, "salut");
     }
 }
 
