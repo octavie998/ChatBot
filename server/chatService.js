@@ -17,16 +17,17 @@ function receivedMessage(event) {
     console.log(JSON.stringify(message));
 
     var messageText = message.text;
+    var messageText2 = message.text;
     var messageAttachments = message.attachments;
 
     if (userService.isUserKnown(senderID)) {
         if (messageText) {
             switch (messageText) {
-                case "Coucou":
-                    sendTextMessage(senderID, "Coucou toi");
+                case "Coucou"||"coucou"||"hello"||"Hello"||"Yo"||"yo"||"Bonjour"||"bonjour"||"Salut"||"salut":
+                    sendTextMessage(senderID, messageText + " toi");
                     break;
                 default:
-                    sendTextMessage(senderID, messageText + " toi");
+                    sendTextMessage(senderID, "Tu ne me dis pas bonjour ??");
             }
         } else if (messageAttachments) {
             sendTextMessage(senderID, "Message with attachment received");
@@ -41,6 +42,20 @@ function receivedMessage(event) {
         sendTextMessage(1068122326553209, "Le test marche ou pas?");
         // Octavie
         sendTextMessage(10152469819394666, "Le test marche !");
+        sendTextMessage(senderID, "Bon allez je suis sympa. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
+        if (messageText2) {
+            switch (messageText2) {
+                case "oui":
+                    sendTextMessage(senderID,"C'est 2 grains de sable qui arrivent à la plage: Putain, c'est blindé aujourd'hui...");
+                    break;
+                case "non":
+                    sendTextMessage(senderID,"Dommage pour toi mon coco");
+                    break;
+                default:
+                    sendTextMessage("Je n'ai pas compris la réponse. Pourtant c'était pas compliqué : oui ou non. Tu as une deuxième chance. Ca te tente une blague ?");
+            }
+
+
     }
 }
 
