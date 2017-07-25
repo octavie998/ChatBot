@@ -6,6 +6,7 @@ const userService = require('./userService');
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
 const VALIDATION_TOKEN = config.get('verifyToken');
 var nombre = 0;
+var TrouverNombre = Math.floor(Math.random() * 11);
 
 function receivedMessage(event) {
     var senderID = event.sender.id;
@@ -48,28 +49,28 @@ function receivedMessage(event) {
             } else if (messageAttachments) {
                 sendTextMessage(senderID, "Message with attachment received");
             }
-            sendTextMessage(senderID, "Je te propoose un jeu. Tu vas devoir trouver un nombre." +
-                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
+            sendTextMessage(senderID, "Je te propose un jeu." +
+                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas deviner. Je te dirai simplement PLUS ou MOINS. OK ?");
         } else {
-            sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose un jeu. " +
-                "Tu vas devoir trouver un nombre. " +
-                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
+            sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propose un jeu." +
+                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas deviner. Je te dirai simplement PLUS ou MOINS. OK ?");
         }
     } else if (nombre == 4) {
         sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
     } else {
-        if (messageText != 7) {
-            if (messageText < 7) {
+        if (messageText != TrouverNombre) {
+            if (messageText < TrouverNombre) {
                 sendTextMessage(senderID, "C'est plus !");
-            } else if (messageText > 7) {
+            } else if (messageText > TrouverNombre) {
                 sendTextMessage(senderID, "C'est moins !");
             }
         } else {
-            sendTextMessage(senderID, "C'est pile ça, bravo !");
+            sendTextMessage(senderID, "C'est pile ça, bravo !" +
+                "A bientôt ! ");
         }
     }
     sendTextMessage(senderID, nombre);
-    nombre = ++nombre;
+    // nombre = ++nombre;
 }
 
 
