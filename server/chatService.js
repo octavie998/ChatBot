@@ -58,17 +58,14 @@ function receivedMessage(event) {
     } else if (nombre == 4) {
         sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
     } else {
-        if (messageText != TrouverNombre) {
             if (messageText < TrouverNombre) {
                 sendTextMessage(senderID, "C'est plus !");
             } else if (messageText > TrouverNombre) {
                 sendTextMessage(senderID, "C'est moins !");
+            } else if (messageText == TrouverNombre) {
+                sendTextMessage("Bravo ! c'est pile ça ! A bientôt :)");
             }
-        } else {
-            sendTextMessage(senderID, "C'est pile ça, bravo !" +
-                "A bientôt ! ");
         }
-    }
     // sendTextMessage(senderID, nombre);
     nombre = ++nombre;
 }
