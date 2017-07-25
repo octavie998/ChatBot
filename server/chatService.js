@@ -67,9 +67,9 @@ function receivedMessage(event) {
         } else {
             sendTextMessage(senderID, "C'est pile ça, bravo !");
         }
-        sendTextMessage(senderID, nombre);
-        nombre = ++nombre;
     }
+    sendTextMessage(senderID, nombre);
+    nombre = ++nombre;
 }
 
 
