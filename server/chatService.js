@@ -69,8 +69,8 @@ function receivedMessage(event) {
                 "A bientôt ! ");
         }
     }
-    sendTextMessage(senderID, nombre);
-    // nombre = ++nombre;
+    // sendTextMessage(senderID, nombre);
+    nombre = ++nombre;
 }
 
 
