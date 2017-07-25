@@ -58,7 +58,14 @@ function receivedMessage(event) {
         } else if (nombre == 4) {
         sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
         } else {
-        sendTextMessage (senderID, "C'est un beau nombre !");
+            while (messageText != 7) {
+                if (messageText < 7) {
+                    sendTextMessage(senderID, "C'est plus !");
+                } else if (messageText > 7) {
+                    sendTextMessage(senderID, "C'est moins !");
+                }
+            }
+        sendTextMessage(senderID, "C'est pile ça, bravo !");
     }
 
     //if (messageText) {
