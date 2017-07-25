@@ -20,38 +20,46 @@ function receivedMessage(event) {
     var messageText = message.text;
     var messageAttachments = message.attachments;
 
-    if (userService.isUserKnown(senderID) == false) {
-        userService.addUser(senderID, {
-            id: senderID,
-            createdAt: timeOfMessage,
-            status: 'chat'
-        });
-        if (messageText) {
-            switch (messageText) {
-                case 'Coucou':
-                case 'coucou':
-                case "hello":
-                case "Hello" :
-                case "Yo":
-                case "yo":
-                case "Bonjour":
-                case "bonjour":
-                case "Salut":
-                case "salut":
-                    sendTextMessage(senderID, messageText + " toi");
-                    break;
-                default:
-                    sendTextMessage(senderID, "Bienvenue ! Je te propose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
-                    break;
+    if (nombre == 0) {
+        if (userService.isUserKnown(senderID) == false) {
+            userService.addUser(senderID, {
+                id: senderID,
+                createdAt: timeOfMessage,
+                status: 'chat'
+            });
+            if (messageText) {
+                switch (messageText) {
+                    case 'Coucou':
+                    case 'coucou':
+                    case "hello":
+                    case "Hello" :
+                    case "Yo":
+                    case "yo":
+                    case "Bonjour":
+                    case "bonjour":
+                    case "Salut":
+                    case "salut":
+                        sendTextMessage(senderID, messageText + " toi");
+                        break;
+                    default:
+                        sendTextMessage(senderID, "Bienvenue ! ");
+                        break;
+                }
+            } else if (messageAttachments) {
+                sendTextMessage(senderID, "Message with attachment received");
             }
-        } else if (messageAttachments) {
-            sendTextMessage(senderID, "Message with attachment received");
+            sendTextMessage(senderID, "Je te propoose un jeu. Tu vas devoir trouver un nombre." +
+            "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS");
+        } else {
+            sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose un jeu. " +
+                "Tu vas devoir trouver un nombre. " +
+                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS");
         }
-    } else {
-        sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
-    }
     nombre = ++nombre;
     sendTextMessage(senderID, nombre);
+    } else {
+        sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
+    }
     //if (messageText) {
     //        switch (messageText) {
      //           case "oui":
