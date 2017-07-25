@@ -62,8 +62,8 @@ function receivedMessage(event) {
                 sendTextMessage(senderID, "C'est plus !");
             } else if (messageText > TrouverNombre) {
                 sendTextMessage(senderID, "C'est moins !");
-            } else if (messageText == TrouverNombre) {
-                sendTextMessage("Bravo ! c'est pile ça ! A bientôt :)");
+            } else {
+                sendTextMessage("Bravo ! c'est pile ça ! Et maintenant il faut me relancer pour que je marche à nouveau :)");
             }
         }
     // sendTextMessage(senderID, nombre);
