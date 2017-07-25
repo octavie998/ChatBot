@@ -5,7 +5,7 @@ const userService = require('./userService');
 // Get the config const
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
 const VALIDATION_TOKEN = config.get('verifyToken');
-var nombre = 1;
+var nombre = 0;
 
 function receivedMessage(event) {
     var senderID = event.sender.id;
@@ -41,7 +41,7 @@ function receivedMessage(event) {
                     sendTextMessage(senderID, messageText + " toi");
                     break;
                 default:
-                    sendTextMessage(senderID, "Bienvenue. Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
+                    sendTextMessage(senderID, "Bienvenue ! Je te propose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
                     break;
             }
         } else if (messageAttachments) {
@@ -50,7 +50,7 @@ function receivedMessage(event) {
     } else {
         sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
     }
-    nombre = nombre +1;
+    nombre = nombre - 1;
     sendTextMessage(senderID, nombre);
     //if (messageText) {
     //        switch (messageText) {
