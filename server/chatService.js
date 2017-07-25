@@ -55,8 +55,7 @@ function receivedMessage(event) {
                 "Tu vas devoir trouver un nombre. " +
                 "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS");
         }
-    sendTextMessage(senderID, nombre);
-    } else {
+        } else {
         sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
     }
     //if (messageText) {
@@ -71,6 +70,7 @@ function receivedMessage(event) {
      //               sendTextMessage(senderID, "Je n'ai pas compris la réponse. Pourtant c'était pas compliqué : oui ou non. Tu as une deuxième chance. Ca te tente une blague ?");
      //       }
       //  }
+    sendTextMessage(senderID, nombre);
     nombre = ++nombre;
 }
 
