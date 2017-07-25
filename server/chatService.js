@@ -49,15 +49,18 @@ function receivedMessage(event) {
                 sendTextMessage(senderID, "Message with attachment received");
             }
             sendTextMessage(senderID, "Je te propoose un jeu. Tu vas devoir trouver un nombre." +
-            "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS");
+            "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
         } else {
             sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose un jeu. " +
                 "Tu vas devoir trouver un nombre. " +
-                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS");
+                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
         }
-        } else {
+        } else if (nombre == 4) {
         sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
+        } else {
+        sendTextMessage (senderID, "C'est un beau nombre !");
     }
+
     //if (messageText) {
     //        switch (messageText) {
      //           case "oui":
