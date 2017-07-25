@@ -50,7 +50,7 @@ function receivedMessage(event) {
     } else {
         sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose de te raconter une blague. Ca te tente ? Dis moi oui ou non");
     }
-    nombre = nombre++;
+    nombre = ++nombre;
     sendTextMessage(senderID, nombre);
     //if (messageText) {
     //        switch (messageText) {
