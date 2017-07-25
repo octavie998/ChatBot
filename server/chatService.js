@@ -5,6 +5,7 @@ const userService = require('./userService');
 // Get the config const
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
 const VALIDATION_TOKEN = config.get('verifyToken');
+var nombre = 1;
 
 function receivedMessage(event) {
     var senderID = event.sender.id;
@@ -18,7 +19,6 @@ function receivedMessage(event) {
 
     var messageText = message.text;
     var messageAttachments = message.attachments;
-    var nombre = 1;
 
     if (userService.isUserKnown(senderID) == false) {
         userService.addUser(senderID, {
