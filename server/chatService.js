@@ -49,39 +49,27 @@ function receivedMessage(event) {
                 sendTextMessage(senderID, "Message with attachment received");
             }
             sendTextMessage(senderID, "Je te propoose un jeu. Tu vas devoir trouver un nombre." +
-            "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
+                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
         } else {
             sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propoose un jeu. " +
                 "Tu vas devoir trouver un nombre. " +
                 "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas me faire des propositions. Je te dirai simplement PLUS ou MOINS. OK ?");
         }
-        } else if (nombre == 4) {
+    } else if (nombre == 4) {
         sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
-        } else {
-            while (messageText != 7) {
-                if (messageText < 7) {
-                    sendTextMessage(senderID, "C'est plus !");
-                } else if (messageText > 7) {
-                    sendTextMessage(senderID, "C'est moins !");
-                }
+    } else {
+        if (messageText != 7) {
+            if (messageText < 7) {
+                sendTextMessage(senderID, "C'est plus !");
+            } else if (messageText > 7) {
+                sendTextMessage(senderID, "C'est moins !");
             }
-        sendTextMessage(senderID, "C'est pile ça, bravo !");
+        } else {
+            sendTextMessage(senderID, "C'est pile ça, bravo !");
+        }
+        sendTextMessage(senderID, nombre);
+        nombre = ++nombre;
     }
-
-    //if (messageText) {
-    //        switch (messageText) {
-     //           case "oui":
-     //               sendTextMessage(senderID, "C'est 2 grains de sable qui arrivent à la plage: Putain, c'est blindé aujourd'hui...");
-     //               break;
-     //           case "non":
-     //               sendTextMessage(senderID, "Dommage pour toi mon coco");
-     //               break;
-      //          default:
-     //               sendTextMessage(senderID, "Je n'ai pas compris la réponse. Pourtant c'était pas compliqué : oui ou non. Tu as une deuxième chance. Ca te tente une blague ?");
-     //       }
-      //  }
-    sendTextMessage(senderID, nombre);
-    nombre = ++nombre;
 }
 
 
