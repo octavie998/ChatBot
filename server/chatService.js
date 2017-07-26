@@ -115,14 +115,15 @@ function receivedMessage(event) {
                                 });
 
                                 sendCarouselReply(senderID, carousel);
-                            });
+                            })
+                            .catch(function(err) {
+                                sendTextMessage(senderID, 'Pas de météo');
+                            })
                     }
                 })
                 .catch(function(err) {
-                    // Do nothing
+                    sendTextMessage(senderID, 'Walou ça marche pas');
                 });
-
-            // sendTextMessage(senderID, "Il fait beau à l'ile de Ré");
 
             userService.changeUserStatus(senderID, 'chat');
         }
