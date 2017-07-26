@@ -14,6 +14,10 @@ function addUser(senderId, userData) {
     db.push('/users/' + senderId, userData)
 }
 
+function getData() {
+    return db.getData('/');
+}
+
 function getUser(senderId) {
     return db.getData('/users/' + senderId);
 }
