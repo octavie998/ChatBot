@@ -53,7 +53,7 @@ function receivedMessage(event) {
     } else {
         var user = userService.getUser(senderID);
 
-        if (userService.status == 'chat') {
+        if (user.status == 'chat') {
             sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
             userService.changeUserStatus(senderID, 'jeu');
             userService.incrementUser(senderID);
