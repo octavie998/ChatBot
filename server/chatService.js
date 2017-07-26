@@ -5,7 +5,6 @@ const userService = require('./userService');
 // Get the config const
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
 const VALIDATION_TOKEN = config.get('verifyToken');
-var nombre = 0;
 var TrouverNombre = Math.floor(Math.random() * 11);
 
 function receivedMessage(event) {
@@ -21,53 +20,54 @@ function receivedMessage(event) {
     var messageText = message.text;
     var messageAttachments = message.attachments;
 
-    if (nombre == 0) {
-        if (userService.isUserKnown(senderID) == false) {
-            userService.addUser(senderID, {
-                id: senderID,
-                createdAt: timeOfMessage,
-                status: 'chat'
-            });
-            if (messageText) {
-                switch (messageText) {
-                    case 'Coucou':
-                    case 'coucou':
-                    case "hello":
-                    case "Hello" :
-                    case "Yo":
-                    case "yo":
-                    case "Bonjour":
-                    case "bonjour":
-                    case "Salut":
-                    case "salut":
-                        sendTextMessage(senderID, messageText + " toi");
-                        break;
-                    default:
-                        sendTextMessage(senderID, "Bienvenue ! ");
-                        break;
-                }
-            } else if (messageAttachments) {
-                sendTextMessage(senderID, "Message with attachment received");
+    if (userService.isUserKnown(senderID) == false) {
+        userService.addUser(senderID, {
+            id: senderID,
+            createdAt: timeOfMessage,
+            status: 'chat',
+            nbMessagesSend: 1
+        });
+        if (messageText) {
+            switch (messageText) {
+                case 'Coucou':
+                case 'coucou':
+                case "hello":
+                case "Hello" :
+                case "Yo":
+                case "yo":
+                case "Bonjour":
+                case "bonjour":
+                case "Salut":
+                case "salut":
+                    sendTextMessage(senderID, messageText + " toi");
+                    break;
+                default:
+                    sendTextMessage(senderID, "Bienvenue ! ");
+                    break;
             }
-            sendTextMessage(senderID, "Je te propose un jeu." +
-                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas deviner. Je te dirai simplement PLUS ou MOINS. OK ?");
-        } else {
-            sendTextMessage(senderID, "On se connait déjà, je suis content de te revoir ! Je te propose un jeu." +
-                "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas deviner. Je te dirai simplement PLUS ou MOINS. OK ?");
+        } else if (messageAttachments) {
+            sendTextMessage(senderID, "Message with attachment received");
         }
-    } else if (nombre == 4) {
-        sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
+        sendTextMessage(senderID, "Je te propose un jeu." +
+            "Je vais prendre un nombre au hasard entre 0 et 10, et tu vas deviner. Je te dirai simplement PLUS ou MOINS. OK ?");
     } else {
+        var user = userService.getUser(senderID);
+
+        if (user.nbMessagesSend == 1) {
+            sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
+            userService.incrementUser(senderID);
+        } else {
             if (messageText < TrouverNombre) {
                 sendTextMessage(senderID, "C'est plus !");
             } else if (messageText > TrouverNombre) {
                 sendTextMessage(senderID, "C'est moins !");
             } else {
-                sendTextMessage("Bravo ! c'est pile ça ! Et maintenant il faut me relancer pour que je marche à nouveau :)");
+                sendTextMessage(senderID, "Bravo ! c'est pile ça ! Et maintenant il faut me relancer pour que je marche à nouveau :)");
             }
+
+            userService.incrementUser(senderID);
         }
-    // sendTextMessage(senderID, nombre);
-    nombre = ++nombre;
+    }
 }
 
 

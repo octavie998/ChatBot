@@ -26,10 +26,22 @@ function changeUserStatus(senderId, status) {
     db.push('/users/' + senderId + '/status', status);
 }
 
+function incrementUser(senderId) {
+    try {
+        var user = db.getData('/users/' + senderId);
+        var nb = user.nbMessagesSend;
+
+        db.push('/users/' + senderId + '/nbMessagesSend', nb + 1);
+    } catch (error) {
+        console.log('Error');
+    }
+}
+
 module.exports = {
     isUserKnown: isUserKnown,
     addUser: addUser,
     changeUserStatus: changeUserStatus,
     getUser: getUser,
-    getData: getData
+    getData: getData,
+    incrementUser: incrementUser
 };
