@@ -85,41 +85,37 @@ function receivedMessage(event) {
                         sendTextMessage(senderID, 'Je ne connais pas ta ville');
                     } else {
                         var location = response[0].geometry.location;
-                        var longitude = location.lng;
-                        var latitude = location.lat;
 
                         sendTextMessage(senderID, 'Voici la météo');
 
-                        weatherService.getWeatherForecast(latitude, longitude)
+                        weatherService.getWeatherForecast(location.lat, location.lng)
                             .then(function (body) {
-                                var weatherData = new WeatherData(body);
+                                var weatherdata = new WeatherData(body);
                                 var carousel = [];
 
-                                console.log('getWeatherForecast');
-
-                                weatherData.forecast.forEach(function(forecast) {
-                                    console.log('forEach');
-                                    carousel.push({
-                                        title: forecast.display_date,
-                                        subtitle: forecast.weather.description + '\n'
-                                            + 'Max : ' + forecast.temp.max + '°C\n'
-                                            + 'Min : ' + forecast.temp.min + '°C',
-                                        image_url: forecast.weather.image,
-                                        buttons: [
-                                            {
-                                                type: 'web_url',
-                                                url: 'http://maps.google.com/maps?z=12&t=m&q=loc:' + latitude + '+' + longitude,
-                                                title: 'Open Google Map'
-                                            }
-                                        ]
-                                    });
+                                weatherdata.forecast.forEach(function (forecast) {
+                                    carousel.push(
+                                        {
+                                            title: forecast.display_date,
+                                            subtitle: forecast.weather.description
+                                            + '\n Max : '
+                                            + forecast.temp.max
+                                            + '°C\n Min : '
+                                            + forecast.temp.min
+                                            + '°C',
+                                            image_url: forecast.weather.image,
+                                            buttons: [{
+                                                type: "web_url",
+                                                url: "http://maps.google.com/maps?z=12&t=m&q=loc:" + location.lat + "+" + location.lng,
+                                                title: "Open Google Map"
+                                            }]
+                                        }
+                                    )
                                 });
-
-                                console.log('preSend');
 
                                 sendCarouselReply(senderID, carousel);
                             })
-                            .catch(function(err) {
+                            .catch(function (err) {
                                 sendTextMessage(senderID, 'Pas de météo');
                             })
                     }
