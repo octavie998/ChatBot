@@ -96,11 +96,11 @@ function receivedMessage(event) {
                                 var carousel = [];
 
                                 weatherData.forecast.forEach(function(forecast) {
-                                    var day = {
+                                    carousel.push({
                                         title: forecast.display_date,
                                         subtitle: forecast.weather.description + '\n'
-                                            + 'Max :' + forecast.temp.max + '°C\n'
-                                            + 'Min :' + forecast.temp.min + '°C',
+                                            + 'Max : ' + forecast.temp.max + '°C\n'
+                                            + 'Min : ' + forecast.temp.min + '°C',
                                         image_url: forecast.weather.image,
                                         buttons: [
                                             {
@@ -109,9 +109,7 @@ function receivedMessage(event) {
                                                 title: 'Open Google Map'
                                             }
                                         ]
-                                    };
-
-                                    carousel.push(day);
+                                    });
                                 });
 
                                 sendCarouselReply(senderID, carousel);
@@ -192,12 +190,9 @@ function callSendAPI(messageData) {
             var recipientId = body.recipient_id;
             var messageId = body.message_id;
 
-            console.log("Successfully sent message with id %s to recipient %s",
-                messageId, recipientId);
+            console.log("Successfully sent message");
         } else {
             console.error("Unable to send message.");
-            console.error(response);
-            console.error(error);
         }
     });
 }
