@@ -64,7 +64,7 @@ function receivedMessage(event) {
                 sendTextMessage(senderID, "C'est moins !");
             } else if (messageText == TrouverNombre) {
                 sendTextMessage(senderID, "Bravo ! c'est pile ça !)");
-                user.changeUserStatus(senderID, 'chat');
+                userService.changeUserStatus(senderID, 'chat');
             } else {
                 sendTextMessage(senderID, "On a dit un nombre ! Truglion");
             }
