@@ -1,5 +1,5 @@
 {
-    "serverUrl": "SERVER_URL",
+    "serverUrl": "https://nounours.herokuapp.com",
     "weatherApiToken": "f9fd345f24cf2b1f6c26b677b4d66a17",
     "googleApiToken": "AIzaSyCLnaaD_05czcFDMw-fK57yINLEhlmrdnE",
     "pageAccessToken": "EAACNvsnDPRUBANnyXe9u40dubWGg1nSxkOIkLGkBsEg1YdZBvUTJaWWJgtDzT66QJLMzsZBwEGCgqmtq0xJt8QffZACWmFGwxZCscgkpO357t9UJHJa1H7L6pobHFSYSDHmiEYEzdjrZCQInveogosRoEmv0uLKdPlWARgxf1GwZDZD",
