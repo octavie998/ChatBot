@@ -3,6 +3,9 @@ const app         = express.Router();
 const config      = require('config');
 const request     = require('request');
 const chatService = require('../server/chatService');
+const weatherService = require('../server/weatherService');
+const parser      = require('json-parser');
+const WeatherData = require('../server/model/weatherData');
 
 app.get('/', function(req, res) {
     res.render('index');
@@ -14,6 +17,25 @@ app.get('/webhook', function(req, res) {
     } else {
         res.sendStatus(403);
     }
+});
+
+app.get('/weather', function(req, res) {
+    weatherService.getGeolocalisation('Palaiseau')
+        .then(function(body) {
+            var location = parser.parse(body).results[0].geometry.location;
+            var longitude = location.lng;
+            var latitude = location.lat;
+
+            weatherService.getWeatherForecast(latitude, longitude)
+                .then(function(body) {
+                    var weatherData = new WeatherData(body);
+
+                    res.send(weatherData);
+                });
+        })
+        .catch(function(err) {
+            // Do nothing
+        })
 });
 
 app.post('/webhook', function (req, res) {

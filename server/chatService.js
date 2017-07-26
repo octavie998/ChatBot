@@ -1,10 +1,14 @@
 const config      = require('config');
 const request     = require('request');
 const userService = require('./userService');
+const weatherService = require('../server/weatherService');
+const parser      = require('json-parser');
+const WeatherData = require('../server/model/weatherData');
 
 // Get the config const
 const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
 const VALIDATION_TOKEN = config.get('verifyToken');
+
 var TrouverNombre = Math.floor(Math.random() * 11);
 
 function receivedMessage(event) {
@@ -75,10 +79,55 @@ function receivedMessage(event) {
                 sendTextMessage(senderID, "On a dit un nombre ! Truglion");
             }
         } else if (user.status == 'météo') {
-            sendTextMessage(senderID, "Il fait beau à l'ile de Ré");
+            weatherService.getGeolocalisation(messageText)
+                .then(function(body) {
+                    var response = parser.parse(body).results;
+
+                    if (response.length <= 0) {
+                        sendTextMessage(senderID, 'Je ne connais pas ta ville');
+                    } else {
+                        var location = response[0].geometry.location;
+                        var longitude = location.lng;
+                        var latitude = location.lat;
+
+                        sendTextMessage(senderID, 'Voici la météo');
+
+                        weatherService.getWeatherForecast(latitude, longitude)
+                            .then(function (body) {
+                                var weatherData = new WeatherData(body);
+                                var carousel = [];
+
+                                weatherData.forecast.forEach(function(forecast) {
+                                    var day = {
+                                        title: forecast.display.date,
+                                        subtitle: forecast.weather.description + '\n'
+                                            + 'Max :' + forecast.temp.max + '°C\n'
+                                            + 'Min :' + forecast.temp.min + '°C',
+                                        image_url: forecast.weather.image,
+                                        buttons: [
+                                            {
+                                                type: 'web_url',
+                                                url: 'http://maps.google.com/maps?z=12&t=m&q=loc:' + latitude + '+' + longitude,
+                                                title: 'Open Google Map'
+                                            }
+                                        ]
+                                    };
+
+                                    carousel.push(day);
+                                });
+
+                                sendCarouselReply(senderID, carousel);
+                            });
+                    }
+                })
+                .catch(function(err) {
+                    // Do nothing
+                });
+
+            // sendTextMessage(senderID, "Il fait beau à l'ile de Ré");
+
             userService.changeUserStatus(senderID, 'chat');
         }
-
         userService.incrementUser(senderID);
     }
 }
