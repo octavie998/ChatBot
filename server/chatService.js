@@ -53,16 +53,20 @@ function receivedMessage(event) {
     } else {
         var user = userService.getUser(senderID);
 
-        if (user.nbMessagesSend == 1) {
+        if (userService.status == 'chat') {
             sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
+            userService.changeUserStatus(senderID, 'jeu');
             userService.incrementUser(senderID);
         } else {
             if (messageText < TrouverNombre) {
                 sendTextMessage(senderID, "C'est plus !");
             } else if (messageText > TrouverNombre) {
                 sendTextMessage(senderID, "C'est moins !");
+            } else if (messageText == TrouverNombre) {
+                sendTextMessage(senderID, "Bravo ! c'est pile ça !)");
+                user.changeUserStatus(senderID, 'chat');
             } else {
-                sendTextMessage(senderID, "Bravo ! c'est pile ça ! Et maintenant il faut me relancer pour que je marche à nouveau :)");
+                sendTextMessage(senderID, "On a dit un nombre ! Truglion");
             }
 
             userService.incrementUser(senderID);
