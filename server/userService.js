@@ -30,5 +30,6 @@ module.exports = {
     isUserKnown: isUserKnown,
     addUser: addUser,
     changeUserStatus: changeUserStatus,
-    getUser: getUser
+    getUser: getUser,
+    getData: getData
 };
