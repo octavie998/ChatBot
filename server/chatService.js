@@ -95,7 +95,10 @@ function receivedMessage(event) {
                                 var weatherData = new WeatherData(body);
                                 var carousel = [];
 
+                                console.log('getWeatherForecast');
+
                                 weatherData.forecast.forEach(function(forecast) {
+                                    console.log('forEach');
                                     carousel.push({
                                         title: forecast.display_date,
                                         subtitle: forecast.weather.description + '\n'
@@ -111,6 +114,8 @@ function receivedMessage(event) {
                                         ]
                                     });
                                 });
+
+                                console.log('preSend');
 
                                 sendCarouselReply(senderID, carousel);
                             })
@@ -193,6 +198,7 @@ function callSendAPI(messageData) {
             console.log("Successfully sent message");
         } else {
             console.error("Unable to send message.");
+            console.log(error);
         }
     });
 }
