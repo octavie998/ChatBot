@@ -99,7 +99,7 @@ function receivedMessage(event) {
 
                                 weatherData.forecast.forEach(function(forecast) {
                                     var day = {
-                                        title: forecast.display.date,
+                                        title: forecast.display_date,
                                         subtitle: forecast.weather.description + '\n'
                                             + 'Max :' + forecast.temp.max + '°C\n'
                                             + 'Min :' + forecast.temp.min + '°C',
