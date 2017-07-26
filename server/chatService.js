@@ -54,10 +54,16 @@ function receivedMessage(event) {
         var user = userService.getUser(senderID);
 
         if (user.status == 'chat') {
-            sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
-            userService.changeUserStatus(senderID, 'jeu');
-            userService.incrementUser(senderID);
-        } else {
+            if (hasWord(messageText, 'météo') || hasWord(messageText, 'Météo')) {
+                sendTextMessage(senderID, "De quelle ville voulez vous la météo ?");
+                userService.changeUserStatus(senderID, 'météo');
+            } else if (hasWord(messageText, 'jeu') || hasWord(messageText, 'Jeu')) {
+                sendTextMessage(senderID, "Donne moi un nombre entre 0 et 10");
+                userService.changeUserStatus(senderID, 'jeu');
+            } else {
+                sendTextMessage(senderID, 'Envoie météo ou jeu');
+            }
+        } else if (user.status == 'jeu') {
             if (messageText < TrouverNombre) {
                 sendTextMessage(senderID, "C'est plus !");
             } else if (messageText > TrouverNombre) {
@@ -68,12 +74,20 @@ function receivedMessage(event) {
             } else {
                 sendTextMessage(senderID, "On a dit un nombre ! Truglion");
             }
-
-            userService.incrementUser(senderID);
+        } else if (user.status == 'météo') {
+            sendTextMessage(senderID, "Il fait beau à l'ile de Ré");
+            userService.changeUserStatus(senderID, 'chat');
         }
+
+        userService.incrementUser(senderID);
     }
 }
 
+function hasWord(messageText, word) {
+    var arrayOfWord = messageText.split(' ');
+
+    return (arrayOfWord.indexOf(word) !== -1);
+}
 
 function sendTextMessage(recipientId, messageText) {
     var messageData = {
